@@ -106,4 +106,31 @@ window.addEventListener("scroll", () => {
 
 }
 
+const music = document.getElementById("bg-music");
+
+function startMusic() {
+  music.play();
+  document.removeEventListener("click", startMusic);
+}
+
+document.addEventListener("click", startMusic);
+
+function startMusic() {
+  music.volume = 0;
+  music.play();
+
+  let vol = 0;
+  const fade = setInterval(() => {
+    if (vol < 1) {
+      vol += 0.05;
+      music.volume = vol;
+    } else {
+      clearInterval(fade);
+    }
+  }, 200);
+
+  document.removeEventListener("click", startMusic);
+}
+
+
 
